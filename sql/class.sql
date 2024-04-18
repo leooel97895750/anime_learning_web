@@ -5,7 +5,7 @@ create table class
 	Type smallint null,
 	CName varchar(1000) null,
 	CDes varchar(5000) null,
-    PlayListID varchar(1000) null,
+    YoutubeID varchar(1000) null,
 	JName varchar(1000) null,
 	JDes varchar(5000) null,
     Click int null default 0,
