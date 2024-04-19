@@ -22,7 +22,7 @@ router.get('/getSentenceByKeyword', function(req, res, next) {
         if(err){console.log(err); res.send('sql connect error');}
 
         let myparams = [p1];
-        let querystr = "select c.CName, c.YoutubeID, s.JText, s.Start, s.Duration from sentence s, co, class c where s.JText like ? and s.SID=co.OID and co.CID=c.CID";
+        let querystr = "select c.CName, c.YoutubeID, s.JText, s.Start, s.Duration from sentence s, co, class c where s.JText like ? and s.SID=co.OID and co.CID=c.CID limit 0, 50";
         connection.query(querystr, myparams, function(err, result){
             if(err){console.log(err); res.send('sql query error');}
             res.send(result);

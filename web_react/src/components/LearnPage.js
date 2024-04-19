@@ -23,20 +23,40 @@ class LearnPage extends React.Component{
             let sentence_json = JSON.parse(xhttp.responseText);
             console.log(sentence_json);
 
-            for(let i=0; i<3; i++){
+            let all = sentence_json.map((val, i) => {
                 let param = {
+                    key: 'iframe'+i,
                     width: '560',
                     height: '315',
-                    src: 'https://www.youtube.com/embed/cclHDzs5xOo',
+                    src: 'https://www.youtube.com/embed/' + val.YoutubeID + '?start=' + Math.floor(val.Start) + '&end=' + Math.ceil(val.Start+val.Duration),
                     title: 'YouTube video player',
                     frameBorder: '0',
                     allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
                     referrerPolicy: 'strict-origin-when-cross-origin',
                     allowFullScreen: '1'
                 }
+                console.log(param.src);
                 let youtube_iframe = React.createElement('iframe', param);
-                ReactDOM.render(youtube_iframe, document.getElementById("youtube_list"));
-            }
+                let JText = React.createElement('div', {key: i+'jtext'}, val.JText);
+                let li = React.createElement('li', {key: i+'li'}, [youtube_iframe, JText]);
+                return li;
+            });
+            ReactDOM.render(all, document.getElementById("youtube_list"));
+
+            // for(let i=0; i<3; i++){
+            //     let param = {
+            //         width: '560',
+            //         height: '315',
+            //         src: 'https://www.youtube.com/embed/cclHDzs5xOo',
+            //         title: 'YouTube video player',
+            //         frameBorder: '0',
+            //         allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+            //         referrerPolicy: 'strict-origin-when-cross-origin',
+            //         allowFullScreen: '1'
+            //     }
+            //     let youtube_iframe = React.createElement('iframe', param);
+            //     ReactDOM.render(youtube_iframe, document.getElementById("youtube_list"));
+            // }
         });
     }
 
@@ -45,7 +65,10 @@ class LearnPage extends React.Component{
             <div>
                 <input id='keyword_input' />
                 <button onClick = {this.query_keyword}>查詢</button>
-                <div id='youtube_list'></div>
+
+                <ul id="youtube_list" style={{listStyleType: 'none', padding: "0px"}}>
+
+                </ul>
             </div>
         );
     }
