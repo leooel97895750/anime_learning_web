@@ -13,7 +13,7 @@ let express = require('express');
 let router = express.Router();
 
 // 輸入keyword
-// 輸出Class.CName, Sentence.JText, Sentence.Start, Sentence.Duration
+// 輸出Class.CName, Class.YoutubeID, Sentence.JText, Sentence.Start, Sentence.Duration
 router.get('/getSentenceByKeyword', function(req, res, next) {
 
     let p1 = '%' + req.query.keyword + '%';
@@ -22,7 +22,7 @@ router.get('/getSentenceByKeyword', function(req, res, next) {
         if(err){console.log(err); res.send('sql connect error');}
 
         let myparams = [p1];
-        let querystr = "select c.CName, s.JText, s.Start, s.Duration from sentence s, co, class c where s.JText like ? and s.SID=co.OID and co.CID=c.CID";
+        let querystr = "select c.CName, c.YoutubeID, s.JText, s.Start, s.Duration from sentence s, co, class c where s.JText like ? and s.SID=co.OID and co.CID=c.CID";
         connection.query(querystr, myparams, function(err, result){
             if(err){console.log(err); res.send('sql query error');}
             res.send(result);
