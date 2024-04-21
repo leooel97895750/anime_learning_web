@@ -31,32 +31,18 @@ class LearnPage extends React.Component{
                     src: 'https://www.youtube.com/embed/' + val.YoutubeID + '?start=' + Math.floor(val.Start) + '&end=' + Math.ceil(val.Start+val.Duration),
                     title: 'YouTube video player',
                     frameBorder: '0',
-                    allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
-                    referrerPolicy: 'strict-origin-when-cross-origin',
+                    //allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+                    //referrerPolicy: 'strict-origin-when-cross-origin',
                     allowFullScreen: '1'
                 }
                 console.log(param.src);
                 let youtube_iframe = React.createElement('iframe', param);
-                let JText = React.createElement('div', {key: i+'jtext'}, val.JText);
-                let li = React.createElement('li', {key: i+'li'}, [youtube_iframe, JText]);
+                let start_duration = React.createElement('div', {key: 'start_duration'+i}, val.Start + ', ' + val.Duration);
+                let JText = React.createElement('div', {key: 'jtext'+i}, val.JText);
+                let li = React.createElement('li', {key: 'li'+i}, [youtube_iframe, start_duration, JText]);
                 return li;
             });
-            ReactDOM.render(all, document.getElementById("youtube_list"));
-
-            // for(let i=0; i<3; i++){
-            //     let param = {
-            //         width: '560',
-            //         height: '315',
-            //         src: 'https://www.youtube.com/embed/cclHDzs5xOo',
-            //         title: 'YouTube video player',
-            //         frameBorder: '0',
-            //         allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
-            //         referrerPolicy: 'strict-origin-when-cross-origin',
-            //         allowFullScreen: '1'
-            //     }
-            //     let youtube_iframe = React.createElement('iframe', param);
-            //     ReactDOM.render(youtube_iframe, document.getElementById("youtube_list"));
-            // }
+            ReactDOM.createRoot(document.getElementById("youtube_list")).render(all);
         });
     }
 
