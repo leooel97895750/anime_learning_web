@@ -1,4 +1,5 @@
 import React from 'react';
+import NavBar from './NavBar'
 import LearnPage from './LearnPage';
 
 class App extends React.Component{
@@ -12,7 +13,7 @@ class App extends React.Component{
     render(){
         return(
             <div>
-                <h1>從動漫學日文</h1>
+                <NavBar />
                 <LearnPage />
             </div>
         );

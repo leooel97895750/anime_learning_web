@@ -28,7 +28,7 @@ class LearnPage extends React.Component{
                     key: 'iframe'+i,
                     width: '560',
                     height: '315',
-                    src: 'https://www.youtube.com/embed/' + val.YoutubeID + '?start=' + val.Start + '&end=' + Math.ceil(val.Start+val.Duration),
+                    src: 'https://www.youtube-nocookie.com/embed/' + val.YoutubeID + '?start=' + Math.floor(val.Start) + '&end=' + Math.ceil(val.Start+val.Duration),
                     title: 'YouTube video player',
                     frameBorder: '0',
                     //allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
