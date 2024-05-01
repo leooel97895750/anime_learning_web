@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import {getAPI} from '../utility/api.js';
-
+import { getAPI } from '../utility/api.js';
 
 
 class LearnPage extends React.Component{
@@ -31,8 +30,6 @@ class LearnPage extends React.Component{
                     src: 'https://www.youtube-nocookie.com/embed/' + val.YoutubeID + '?start=' + Math.floor(val.Start) + '&end=' + Math.ceil(val.Start+val.Duration),
                     title: 'YouTube video player',
                     frameBorder: '0',
-                    //allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
-                    //referrerPolicy: 'strict-origin-when-cross-origin',
                     allowFullScreen: '1'
                 }
                 console.log(param.src);
